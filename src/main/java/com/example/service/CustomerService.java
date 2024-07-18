@@ -4,6 +4,7 @@ import com.example.dto.FakeAPIResponse;
 import com.example.entity.Customer;
 import com.example.entity.Person;
 import com.example.repository.CustomerRepository;
+import com.example.utils.Config;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class CustomerService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private Config config;
+
     @PostConstruct
     private void postConstructExample(){
         System.out.println("postConstructExample called");
@@ -42,6 +46,8 @@ public class CustomerService {
     @Cacheable("customers")
     public List<Customer> getAllCustomers(){
         System.out.println("inside getAllCustomers");
+
+        System.out.println("from config => "+ config.getJsonPlaceholderUrl() + config.getBaseUrl() + config.getPath());
 
         var customers = customerRepository.findAll();
         var multiLineMessage = """
@@ -61,7 +67,7 @@ public class CustomerService {
 
         try{
             ResponseEntity<FakeAPIResponse> fakeAPIResponse = restTemplate.exchange(
-                    "https://jsonplaceholder.typicode.com/posts",
+                    config.getJsonPlaceholderUrl(),
                     HttpMethod.POST,
                     requestEntity,
                     FakeAPIResponse.class
