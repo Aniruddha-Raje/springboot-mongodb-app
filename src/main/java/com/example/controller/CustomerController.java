@@ -5,7 +5,10 @@ import com.example.dto.Greeting;
 import com.example.entity.Customer;
 import com.example.exception.BadRequestException;
 import com.example.service.CustomerService;
+import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +25,20 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    @Lazy
+    private EurekaClient eurekaClient;
+
+    @Value("${spring.application.name}")
+    private String appName;
+
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         System.out.println("getAllCustomers called");
+        System.out.println(eurekaClient.getApplication(appName).getName());
         return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
