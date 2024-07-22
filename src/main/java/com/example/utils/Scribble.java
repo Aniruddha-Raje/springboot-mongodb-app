@@ -21,24 +21,6 @@ public class Scribble {
 
     public static void main(String[] args) {
 
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-
-        List<Integer> pipeline = numbers
-                .stream()
-                .filter(n -> n%2==0)
-                .map(n -> n*2)
-                .sorted()
-                .distinct()
-                .toList();
-
-        pipeline.forEach(System.out::println);
-
-        List<String> letters = Arrays.asList("a", "b", "c", "d", "e");
-        String result = letters
-                .stream()
-                .reduce("", (partialString, element) -> partialString + element);
-        System.out.println(result);
-
         List<Person> persons = Arrays.asList(
                 new Person("Alice","New York", 85),
                 new Person("Bob",  "Los Angeles", 75),
@@ -47,13 +29,7 @@ public class Scribble {
                 new Person("Eve", "Los Angeles", 95)
         );
 
-        Map<String, Integer> studentScores = new HashMap<>();
-        studentScores.put("Alice", 85);
-        studentScores.put("Bob", 75);
-        studentScores.put("Charlie", 90);
-        studentScores.put("David", 65);
-        studentScores.put("Eve", 95);
-
+        //GroupBy address
         Map<String, List<Person>> personsByCity = persons.stream()
                 .collect(Collectors.groupingBy(Person::address));
 
@@ -66,6 +42,14 @@ public class Scribble {
         // Partitioning persons by age
         Map<Boolean, List<Person>> partitionedByAge = persons.stream()
                 .collect(Collectors.partitioningBy(person -> person.age() >= 70));
+
+        //Formatting
+        Map<String, Integer> studentScores = new HashMap<>();
+        studentScores.put("Alice", 85);
+        studentScores.put("Bob", 75);
+        studentScores.put("Charlie", 90);
+        studentScores.put("David", 65);
+        studentScores.put("Eve", 95);
 
         List<String> filteredAndFormatted = studentScores.entrySet().stream()
                 .filter(entry -> entry.getValue() > 80)
@@ -81,7 +65,7 @@ public class Scribble {
 
         // Joining person names into a single string separated by commas
         String names = persons.stream()
-                .map(Person::name)
+                .map(e -> e.name())
                 .collect(Collectors.joining(", "));
 
         // Second-highest age

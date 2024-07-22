@@ -1,11 +1,9 @@
 package com.example.utils;
 
-import java.util.List;
-
-public class ScribbleTests {
+public class ReverseWords {
     public static void main(String[] args) {
         String str = "hello world";
-        ScribbleTests test = new ScribbleTests();
+        ReverseWords test = new ReverseWords();
         StringBuilder sb = new StringBuilder();
 
         String[] arr = str.split(" ");
