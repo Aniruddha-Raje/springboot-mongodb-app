@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TwoSum {
+
+    private static final System.Logger logger = System.getLogger(TwoSum.class.getName());
+
     public static int[] findTwoSum(int[] nums, int target) {
         Map<Integer, Integer> numMap = new HashMap<>();
 

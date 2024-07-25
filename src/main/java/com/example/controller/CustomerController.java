@@ -32,6 +32,8 @@ public class CustomerController {
     @Value("${spring.application.name}")
     private String appName;
 
+    private static final System.Logger logger = System.getLogger(CustomerController.class.getName());
+
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 

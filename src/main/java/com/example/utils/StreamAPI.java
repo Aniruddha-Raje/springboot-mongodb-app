@@ -1,9 +1,6 @@
 package com.example.utils;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class StreamAPI {
     public static void main(String[] args) {
@@ -16,6 +13,8 @@ public class StreamAPI {
         List<Integer> numberSquare = list.stream().map(current -> current*2).toList();
 
         Optional<Integer> secondHigest = list.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+
+        OptionalInt max = list.stream().mapToInt(num -> num).max();
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
 

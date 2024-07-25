@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Scribble {
 
+    private static final System.Logger logger = System.getLogger(Scribble.class.getName());
+
     static {
         System.out.println("Static block called");
     }
@@ -15,7 +17,7 @@ public class Scribble {
         System.out.println("Instance block called");
     }
 
-    public Scribble() {
+    Scribble() {
         System.out.println("Constructor called");
     }
 
@@ -39,7 +41,7 @@ public class Scribble {
             personList.forEach(person -> System.out.println("  " + person));
         });
 
-        // Partitioning persons by age
+        // partitioningBy - returns Map
         Map<Boolean, List<Person>> partitionedByAge = persons.stream()
                 .collect(Collectors.partitioningBy(person -> person.age() >= 70));
 
@@ -53,7 +55,7 @@ public class Scribble {
 
         List<String> filteredAndFormatted = studentScores.entrySet().stream()
                 .filter(entry -> entry.getValue() > 80)
-                .map(entry -> "Student:" + entry.getKey() + " Score:" + entry.getValue()) // Transform to formatted strings
+                .map(entry -> "Student:" + entry.getKey() + " Score:" + entry.getValue())
                 .toList();
         filteredAndFormatted.forEach(System.out::println);
 

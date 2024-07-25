@@ -1,6 +1,9 @@
 package com.example.utils;
 
 public class ReverseWords {
+
+    private static final System.Logger logger = System.getLogger(ReverseWords.class.getName());
+
     public static void main(String[] args) {
         String str = "hello world";
         ReverseWords test = new ReverseWords();

@@ -5,6 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorServiceExample {
+
+    private static final System.Logger logger = System.getLogger(ExecutorServiceExample.class.getName());
+
     public static void main(String[] args) {
         // Create an ExecutorService with a single thread executor
         ExecutorService executorService = Executors.newSingleThreadExecutor();
