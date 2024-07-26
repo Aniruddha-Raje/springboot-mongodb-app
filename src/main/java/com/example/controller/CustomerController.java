@@ -25,13 +25,6 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @Autowired
-    @Lazy
-    private EurekaClient eurekaClient;
-
-    @Value("${spring.application.name}")
-    private String appName;
-
     private static final System.Logger logger = System.getLogger(CustomerController.class.getName());
 
     private static final String template = "Hello, %s!";
@@ -40,7 +33,6 @@ public class CustomerController {
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         System.out.println("getAllCustomers called");
-        System.out.println(eurekaClient.getApplication(appName).getName());
         return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 

@@ -2,7 +2,7 @@ package com.example.utils;
 
 import java.util.*;
 
-public class StreamAPI {
+public class StreamArrays {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(2,3,4,6,5);
 
