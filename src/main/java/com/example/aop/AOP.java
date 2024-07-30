@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@EnableAspectJAutoProxy
 public class AOP {
 
-    @Before("execution(public List<Customer> getAllCustomers())")
+    @Before("execution(public ResponseEntity<List<Customer>> com.example.controller.CustomerController.getAllCustomers())")
     public void logBefore(JoinPoint joinPoint) {
 
         System.out.println("logBefore() is running!");
@@ -20,7 +19,7 @@ public class AOP {
         System.out.println("******");
     }
 
-    @After("execution(public List<Customer> getAllCustomers())")
+    @After("execution(public ResponseEntity<List<Customer>> com.example.controller.CustomerController.getAllCustomers())")
     public void logAfter(JoinPoint joinPoint) {
 
         System.out.println("logAfter() is running!");

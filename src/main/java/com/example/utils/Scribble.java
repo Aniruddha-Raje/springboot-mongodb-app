@@ -1,7 +1,6 @@
 package com.example.utils;
 
 import lombok.Getter;
-import lombok.Setter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,8 +9,8 @@ public class Scribble {
 
         List<Emp> list = Arrays.asList(
                 new Emp("aa", 100),
-                new Emp("aa", 200),
-                new Emp("aa", 300)
+                new Emp("bb", 200),
+                new Emp("cc", 300)
         );
 
         Optional<Emp> emp = list.stream()
@@ -28,10 +27,9 @@ public class Scribble {
 }
 
 @Getter
-@Setter
 class Emp {
     String name;
-    double sal;
+    int sal;
 
     public Emp(String name, Integer sal) {
         this.name = name;
