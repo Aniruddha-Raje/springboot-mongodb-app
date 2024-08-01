@@ -6,6 +6,8 @@ public class StreamArrays {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(2,3,4,6,5);
 
+        List<Integer> unique = list.stream().distinct().toList();
+
         int sumOfAll = list.stream().reduce(0,(sum, current) -> sum + current);
 
         List<Integer> evenNumbers = list.stream().filter(current -> current %2 == 0).toList();

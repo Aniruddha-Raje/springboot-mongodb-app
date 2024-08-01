@@ -12,14 +12,14 @@ public class ReverseWords {
         String[] arr = str.split(" ");
 
         for(String curr: arr){
-            sb.append(test.rev(curr) + " ");
+            sb.append(test.reverse(curr) + " ");
         }
 
         System.out.println(sb);
 
     }
 
-    public StringBuilder rev(String str){
+    public StringBuilder reverse(String str){
         String[] arr = str.split("");
         StringBuilder sb =  new StringBuilder();
 
