@@ -1,14 +1,16 @@
-package com.example.utils;
+package com.example.snippet;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 @Getter
 class Employee {
-    private String name;
-    private double salary;
+    private final String name;
+    private final double salary;
 
     public Employee(String name, double salary) {
         this.name = name;
@@ -16,6 +18,7 @@ class Employee {
     }
 }
 
+@Slf4j
 public class SecondHighest {
     public static void main(String[] args) {
         List<Employee> employees = new ArrayList<>();
@@ -32,9 +35,9 @@ public class SecondHighest {
                 .orElse(null);
 
         if (secondHighestSalaryEmployee != null) {
-            System.out.println("Employee with the second highest salary:" + secondHighestSalaryEmployee);
+            log.info("Employee with the second highest salary:" + secondHighestSalaryEmployee);
         } else {
-            System.out.println("No employee found.");
+            log.info("No employee found.");
         }
     }
 }

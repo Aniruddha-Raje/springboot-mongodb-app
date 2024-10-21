@@ -7,6 +7,7 @@ import com.example.repository.CustomerRepository;
 import com.example.utils.Config;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+@Slf4j
 @Service
 public class CustomerService {
 
@@ -35,25 +37,25 @@ public class CustomerService {
 
     @PostConstruct
     private void postConstructExample(){
-        System.out.println("postConstructExample called");
+        log.info("postConstructExample called");
     }
 
     @PreDestroy
     private void preDestroyExample(){
-        System.out.println("preDestroyExample called");
+        log.info("preDestroyExample called");
     }
 
     @Cacheable("customers")
     public List<Customer> getAllCustomers(){
-        System.out.println("inside getAllCustomers");
+        log.info("inside getAllCustomers");
 
-        System.out.println("from config => "+ config.getJsonPlaceholderUrl() + config.getBaseUrl() + config.getPath());
+        log.info("from config => "+ config.getJsonPlaceholderUrl() + config.getBaseUrl() + config.getPath());
 
         var customers = customerRepository.findAll();
         var multiLineMessage = """
                 customers => { customers }
             """;
-        System.out.println(multiLineMessage);
+        log.info(multiLineMessage);
         return customers;
     }
 
@@ -76,7 +78,7 @@ public class CustomerService {
             return Optional.ofNullable(fakeAPIResponse.getBody());
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
             return Optional.empty();
         }
     }
