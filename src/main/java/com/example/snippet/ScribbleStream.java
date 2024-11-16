@@ -2,8 +2,7 @@ package com.example.snippet;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 public class ScribbleStream {
@@ -13,6 +12,5 @@ public class ScribbleStream {
 
         List<Integer> sortedList =  list.stream().filter(e -> e > 2).map(e -> e*2).sorted().toList();
         log.info("sortedList => " + sortedList);
-
     }
 }

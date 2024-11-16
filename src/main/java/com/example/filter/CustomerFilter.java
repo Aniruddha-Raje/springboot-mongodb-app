@@ -12,13 +12,20 @@ import java.io.IOException;
 @Component
 @Order(1)
 public class CustomerFilter implements Filter {
+
+    //Filters operate at the Servlet level
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         log.info("doFilter called");
-        log.info("Starting a transaction for req : {}" + req.getRequestURI());
+        log.info("doFilter start {}" + req.getRequestURI());
 
         filterChain.doFilter(servletRequest, servletResponse);
-        log.info("Committing a transaction for req : {}" + req.getRequestURI());
+        log.info("doFilter committing transaction {}" + req.getRequestURI());
+    }
+
+    @Override public void destroy() {
+        log.info("Filter destroy called");
     }
 }

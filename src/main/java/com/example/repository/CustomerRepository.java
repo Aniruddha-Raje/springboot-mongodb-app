@@ -11,4 +11,6 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
 
     @Override
     List<Customer> findAll();
+
+    Customer findByFirstName(String firstName);
 }

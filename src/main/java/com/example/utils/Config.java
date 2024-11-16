@@ -14,6 +14,8 @@ public class Config {
 
     @Value("${app.jsonPlaceholderUrl}")
     private String jsonPlaceholderUrl;
+
     private String baseUrl;
+
     private String path;
 }
